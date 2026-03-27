@@ -2,11 +2,22 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B.svg)](https://streamlit.io)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?logo=streamlit)](https://pis-llm.streamlit.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **PIS-LLM** (Persistent Homology-Informed Signal Large Language Model) is a novel computational framework that integrates **Topological Data Analysis (TDA)** with **Large Language Models (LLMs)** for automated, explainable cardiovascular signal assessment. 
 
 This repository contains the official implementation of the PIS-LLM framework, including the TDA signal processing pipeline, cardiovascular metrics extraction, and the interactive web-based clinical report generator.
+
+---
+
+## 🌐 Live Demo
+
+Experience the PIS-LLM framework directly in your browser without any local installation:
+
+👉 **[Launch PIS-LLM Web App](https://pis-llm.streamlit.app/)**
+
+*(Note: You will need to provide your own API key from Alibaba bailian, in the sidebar to generate LLM reports.)*
 
 ---
 
@@ -100,7 +111,6 @@ If you find this code or the PIS-LLM framework useful in your research, please c
   journal={Submit to [Journal/Conference Name]},
   year={2026},
   institution={Fudan University}
-}
 ``` -->
 *(Note: Citation details will be updated upon publication.)*
 
@@ -111,6 +121,6 @@ If you find this code or the PIS-LLM framework useful in your research, please c
 **PIS-LLM is a computational screening and research tool.** The generated reports and topological analyses are for academic and research purposes only and **do not constitute medical diagnoses**. Always consult a qualified healthcare professional for medical advice.
 
 ---
-**Author:** Daniel Wang @ Fudan University  
-**Contact:** daomiao.wang@live.com  
+**Author:** Daomiao Wang @ Fudan University  
+**Contact:** wangdm23@m.fudan.edu.cn, daomiao.wang@live.com  
 **Copyright:** © 2026 Fudan University. All Rights Reserved.
