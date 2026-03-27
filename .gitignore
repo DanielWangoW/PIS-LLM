@@ -1,0 +1,55 @@
+# ── Secrets (NEVER commit) ─────────────────────────────────────
+.env
+*.env.local
+*.key
+apikey.txt
+secrets.toml
+
+# ── Python cache ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Local runtime outputs (large, regenerated on each run) ─────
+outputs/
+images/
+feedbacks/
+
+# ── Local test data ────────────────────────────────────────────
+upload_signals/
+
+# ── Legacy / scratch files ─────────────────────────────────────
+_tda_tmp/
+parameters/results.json
+prompts/prompt.txt
+prompts/prompt_copy.txt
+prompts/prompt_us.txt
+REFACTOR_NOTES.md
+ProEngOpt_*.md
+
+# ── macOS ──────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+
+# ── IDE ────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Jupyter ────────────────────────────────────────────────────
+*.ipynb_checkpoints/
+.ipynb_checkpoints
+
+# ── Conda / venv ───────────────────────────────────────────────
+env/
+venv/
+.conda/

@@ -1,0 +1,4 @@
+libgmp-dev
+libmpfr-dev
+libboost-dev
+libboost-python-dev

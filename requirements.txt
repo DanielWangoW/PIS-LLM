@@ -1,0 +1,24 @@
+# CardioDetector TDA — Streamlit Community Cloud
+# Python 3.11  |  conda env: proeng (local) / Streamlit Cloud (remote)
+
+# ── Web framework ──────────────────────────────────────────────
+streamlit>=1.35.0
+
+# ── LLM (OpenAI-compatible API) ────────────────────────────────
+openai>=1.30.0
+
+# ── TDA & Signal Processing ────────────────────────────────────
+# gudhi ships pre-built wheels for Linux x86_64 (Streamlit Cloud)
+gudhi>=3.9.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+
+# ── Numerics & Data ────────────────────────────────────────────
+numpy>=1.26.0
+pandas>=2.1.0
+
+# ── Visualization ──────────────────────────────────────────────
+matplotlib>=3.8.0
+
+# ── Configuration ──────────────────────────────────────────────
+python-dotenv>=1.0.0

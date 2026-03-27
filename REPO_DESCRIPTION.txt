@@ -1,0 +1,3 @@
+[GitHub Repository Description / About Section]
+
+Official implementation of PIS-LLM: A novel framework integrating Topological Data Analysis (TDA) and Large Language Models (LLMs) for automated, explainable cardiovascular signal assessment. Features Takens embedding, persistent homology anomaly detection, and a multi-model interactive Streamlit UI.
