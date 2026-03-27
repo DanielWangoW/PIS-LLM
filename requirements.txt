@@ -1,5 +1,12 @@
-# CardioDetector TDA — Streamlit Community Cloud
-# Python 3.11  |  conda env: proeng (local) / Streamlit Cloud (remote)
+# PIS-LLM (CardioDetector TDA) — Streamlit Community Cloud
+# Streamlit Cloud runs Python 3.14.x (as of 2026-Q1)
+#
+# IMPORTANT: gudhi 3.12.0rc3 is the ONLY release with a cp314 Linux wheel.
+# Versions <=3.11.0 have no cp314 wheel and will fail on Streamlit Cloud.
+# --pre is required to allow pre-release installation.
+
+# ── Pre-release flag (required for gudhi 3.12.0rc3) ───────────
+--pre
 
 # ── Web framework ──────────────────────────────────────────────
 streamlit>=1.35.0
@@ -8,8 +15,7 @@ streamlit>=1.35.0
 openai>=1.30.0
 
 # ── TDA & Signal Processing ────────────────────────────────────
-# gudhi ships pre-built wheels for Linux x86_64 (Streamlit Cloud)
-gudhi>=3.9.0
+gudhi==3.12.0rc3
 scikit-learn>=1.4.0
 scipy>=1.12.0
 
