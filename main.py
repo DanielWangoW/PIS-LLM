@@ -519,12 +519,14 @@ with st.sidebar:
     model_id, provider, env_key = config.LLM_MODEL_MAP[selected_model_name]
 
     # ── API Key for selected provider ──────────────────────────────────────────
-    provider_label = {
-        "dashscope": "Qwen (DashScope)",
+    # NOTE: Each provider key must be unique; duplicate keys silently overwrite.
+    _PROVIDER_LABELS = {
+        "dashscope": "Alibaba DashScope",
         "deepseek":  "DeepSeek",
-        "dashscope": "Zhipu AI (GLM)",
+        "zhipu":     "Zhipu AI (GLM)",
         "moonshot":  "Moonshot (Kimi)",
-    }.get(provider, provider)
+    }
+    provider_label = _PROVIDER_LABELS.get(provider, provider.title())
 
     # ── Lock API Key toggle ──────────────────────────────────────────────
     lock_api = st.toggle(
@@ -545,14 +547,14 @@ with st.sidebar:
     lock_badge = " <span style='color:#f6ad55;font-size:0.72rem'>🔒 Locked</span>" if st.session_state.lock_api_key else ""
     st.markdown(
         f"<div style='font-size:0.8rem;color:{T['text_muted']};margin-bottom:4px'>"
-        f"🔑 Alibaba Model Studio API Key — {provider_label}{lock_badge}</div>",
+        f"🔑 {provider_label} — {selected_model_name}{lock_badge}</div>",
         unsafe_allow_html=True,
     )
     new_key = st.text_input(
         "api_key_input",
         value=display_key,
         type="password",
-        placeholder=f"Enter {provider_label} API key...",
+        placeholder=f"Enter {provider_label} key (sk-...)",
         label_visibility="collapsed",
     )
     if new_key != display_key:
@@ -626,6 +628,17 @@ with col_info:
         f"</div>",
         unsafe_allow_html=True,
     )
+    # ── Sample file download ────────────────────────────────────────────────
+    _sample_path = Path(__file__).parent / "samples" / "noise_ppg_sample.csv"
+    if _sample_path.exists():
+        st.download_button(
+            label="⬇ Download Sample",
+            data=_sample_path.read_bytes(),
+            file_name="noise_ppg_sample.csv",
+            mime="text/csv",
+            help="Download a sample PPG signal CSV to test the analyzer",
+            use_container_width=True,
+        )
 
 # ── Landing state: show welcome only if no file AND no cached result ──────────────────────
 has_cached_result = st.session_state.analysis_result is not None
