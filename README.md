@@ -93,7 +93,7 @@ streamlit run main.py
 
 If you find this code or the PIS-LLM framework useful in your research, please cite our paper:
 
-```bibtex
+<!-- ```bibtex
 @article{wang2026pisllm,
   title={PIS-LLM: Persistent Homology-Informed Signal Large Language Models for Cardiovascular Assessment},
   author={Wang, Daniel and others},
@@ -101,7 +101,7 @@ If you find this code or the PIS-LLM framework useful in your research, please c
   year={2026},
   institution={Fudan University}
 }
-```
+``` -->
 *(Note: Citation details will be updated upon publication.)*
 
 ---
