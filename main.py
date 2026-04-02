@@ -30,6 +30,13 @@ from core.signal_processor import (
     SignalProcessingResult,
 )
 
+# PDF export (lazy import to avoid slowing initial load)
+try:
+    from core.pdf_exporter import generate_pdf as _generate_pdf
+    _PDF_AVAILABLE = True
+except ImportError:
+    _PDF_AVAILABLE = False
+
 # ══════════════════════════════════════════════════════════════════════════════
 # Page config
 # ══════════════════════════════════════════════════════════════════════════════
@@ -995,14 +1002,48 @@ if llm_error:
 elif llm_report:
     st.markdown(f"<div class='report-box'>{llm_report}</div>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
-    dl1, dl2 = st.columns([1, 4])
+    dl1, dl2, dl3 = st.columns([1, 1, 3])
     with dl1:
         st.download_button(
-            "⬇️ Download Report",
+            "⬇️ Download .md",
             data=llm_report,
             file_name=f"cardio_report_{st.session_state.session_id}.md",
             mime="text/markdown",
         )
+    with dl2:
+        if _PDF_AVAILABLE and result is not None:
+            # Generate PDF on demand (cached in session_state)
+            _pdf_cache_key = f"pdf_{st.session_state.session_id}_{len(st.session_state.chat_history)}"
+            if st.session_state.get("_pdf_cache_key") != _pdf_cache_key:
+                try:
+                    _pdf_bytes = _generate_pdf(
+                        result=result,
+                        llm_report=llm_report,
+                        chat_history=st.session_state.chat_history,
+                        filename=st.session_state.cached_filename or "signal.csv",
+                        model_name=selected_model_name,
+                        language=lang,
+                        session_id=st.session_state.session_id,
+                    )
+                    st.session_state["_pdf_bytes"]     = _pdf_bytes
+                    st.session_state["_pdf_cache_key"] = _pdf_cache_key
+                except Exception as _pdf_err:
+                    st.session_state["_pdf_bytes"]     = None
+                    st.session_state["_pdf_cache_key"] = _pdf_cache_key
+            _pdf_bytes = st.session_state.get("_pdf_bytes")
+            if _pdf_bytes:
+                st.download_button(
+                    "📄 Export PDF",
+                    data=_pdf_bytes,
+                    file_name=f"PIS_LLM_Report_{st.session_state.session_id}.pdf",
+                    mime="application/pdf",
+                    help="Download a complete PDF report including all metrics, figures, clinical report and conversation history",
+                )
+            else:
+                st.button("📄 Export PDF", disabled=True, help="PDF generation failed")
+        else:
+            st.button("📄 Export PDF", disabled=True,
+                      help="Install reportlab to enable PDF export")
 else:
     st.info("Run analysis or click **Regenerate Report** to generate the clinical report.", icon="ℹ️")
 
